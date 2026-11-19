@@ -1,0 +1,18 @@
+workflows:
+  windows-release:
+    name: Windows Release Build
+    instance_type: windows_x2
+    scripts:
+      - name: Enable Windows and get packages
+        script: |
+          flutter config --enable-windows-desktop
+          flutter pub get
+      - name: Build Windows EXE
+        script: flutter build windows --release
+      - name: Build Installer (Optional - requires installer.iss)
+        script: |
+          choco install innosetup -y
+          iscc installer.iss
+    artifacts:
+      - build/windows/x64/runner/Release/**
+      - Output/*.exe
