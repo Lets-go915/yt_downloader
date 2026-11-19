@@ -1,4 +1,4 @@
-name: Build Windows EXE
+name: Build Windows EXE and Installer
 
 on:
   push:
@@ -22,12 +22,20 @@ jobs:
         run: |
           flutter config --enable-windows-desktop
           flutter pub get
+        shell: pwsh
 
       - name: Build Windows Release (.exe)
         run: flutter build windows --release
+        shell: pwsh
 
-      - name: Upload Standalone Portable Folder (.exe + DLLs)
+      - name: Build Windows Installer (setup.exe)
+        run: |
+          choco install innosetup -y
+          & "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" installer.iss
+        shell: pwsh
+
+      - name: Upload Installer (setup.exe)
         uses: actions/upload-artifact@v4
         with:
-          name: yt-downloader-portable
-          path: build/windows/x64/runner/Release/
+          name: yt-downloader-installer
+          path: Output/yt_downloader_setup.exe
