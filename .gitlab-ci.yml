@@ -1,0 +1,19 @@
+build_windows_release:
+  stage: build
+  tags:
+    - saas-windows-medium-amd64
+  before_script:
+    - choco install flutter innosetup -y
+    - Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
+    - refreshenv
+  script:
+    - flutter config --enable-windows-desktop
+    - flutter pub get
+    - flutter build windows --release
+    - iscc installer.iss
+  artifacts:
+    name: "yt_downloader_windows"
+    paths:
+      - build/windows/x64/runner/Release/
+      - Output/yt_downloader_setup.exe
+    expire_in: 1 week
