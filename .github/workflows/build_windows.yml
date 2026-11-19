@@ -1,0 +1,44 @@
+name: Build Windows EXE and Installer
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: Enable Windows desktop & get packages
+        run: |
+          flutter config --enable-windows-desktop
+          flutter pub get
+
+      - name: Build Windows Release (.exe)
+        run: flutter build windows --release
+
+      - name: Build Windows Installer (setup.exe)
+        run: |
+          choco install innosetup -y
+          iscc installer.iss
+
+      - name: Upload Installer (setup.exe)
+        uses: actions/upload-artifact@v4
+        with:
+          name: yt-downloader-installer
+          path: Output/yt_downloader_setup.exe
+
+      - name: Upload Standalone Portable Folder (.exe + DLLs)
+        uses: actions/upload-artifact@v4
+        with:
+          name: yt-downloader-portable
+          path: build/windows/x64/runner/Release/
