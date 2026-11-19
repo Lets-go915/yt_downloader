@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#06110b">
+  <meta name="description" content="YT Downloader — choose the installer or portable edition.">
+  <title>YT Downloader — Downloads</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #050d08;
+      --surface: #0a1710;
+      --surface-raised: #0d2015;
+      --green: #00ff78;
+      --green-bright: #39ff91;
+      --green-deep: #087a3c;
+      --text: #effff4;
+      --muted: #9ab6a3;
+      --border: rgba(39, 255, 129, .19);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; display: grid; place-items: center;
+      padding: 28px 18px; color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(0,255,120,.17), transparent 43%),
+        radial-gradient(ellipse at 95% 75%, rgba(0,120,55,.10), transparent 38%),
+        linear-gradient(145deg, #030805, #07130b 55%, #030906);
+    }
+    .wrap { width: min(930px, 100%); }
+    header { display: flex; align-items: center; gap: 13px; margin-bottom: 55px; }
+    .logo {
+      width: 47px; height: 47px; border-radius: 15px; display: grid; place-items: center;
+      color: #001b0b; font-size: 24px; font-weight: 950;
+      background: linear-gradient(145deg, #7dffb4, #00d95e 65%, #009b43);
+      box-shadow: 0 0 13px rgba(0,255,120,.45), 0 0 36px rgba(0,255,120,.19);
+    }
+    .brand { font-size: 21px; font-weight: 850; letter-spacing: -.6px; }
+    .brand span { color: var(--green); text-shadow: 0 0 17px rgba(0,255,120,.5); }
+    .hero { text-align: center; margin: 0 auto 40px; max-width: 700px; }
+    .eyebrow {
+      display: inline-block; padding: 7px 13px; border: 1px solid var(--border);
+      border-radius: 999px; color: var(--green-bright); background: rgba(0,255,120,.055);
+      box-shadow: inset 0 0 15px rgba(0,255,120,.035), 0 0 22px rgba(0,255,120,.06);
+      font-size: 11px; font-weight: 800; letter-spacing: 1.7px; text-transform: uppercase;
+    }
+    h1 {
+      margin: 21px 0 13px; font-size: clamp(40px, 7vw, 68px);
+      line-height: 1.02; letter-spacing: -3px;
+    }
+    h1 span {
+      color: var(--green); text-shadow: 0 0 12px rgba(0,255,120,.45), 0 0 34px rgba(0,255,120,.2);
+    }
+    .intro { margin: 0 auto; max-width: 575px; color: var(--muted); font-size: 16px; line-height: 1.75; }
+    .cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 17px; }
+    .card {
+      position: relative; overflow: hidden; padding: 29px;
+      border: 1px solid var(--border); border-radius: 23px;
+      background: linear-gradient(155deg, rgba(13,32,21,.98), rgba(6,17,11,.98));
+      box-shadow: 0 18px 55px rgba(0,0,0,.3), inset 0 1px rgba(255,255,255,.025);
+    }
+    .card::before {
+      content: ""; position: absolute; width: 190px; height: 190px; right: -95px; top: -110px;
+      border-radius: 50%; background: rgba(0,255,120,.09); filter: blur(28px);
+      pointer-events: none;
+    }
+    .icon {
+      width: 49px; height: 49px; border-radius: 15px; display: grid; place-items: center;
+      margin-bottom: 21px; background: rgba(0,255,120,.085); color: var(--green-bright);
+      border: 1px solid rgba(0,255,120,.2); font-size: 24px;
+      box-shadow: 0 0 22px rgba(0,255,120,.08);
+    }
+    h2 { margin: 0 0 9px; font-size: 23px; }
+    .card p { min-height: 52px; margin: 0 0 23px; color: var(--muted); line-height: 1.65; font-size: 14px; }
+    .button {
+      display: flex; justify-content: center; align-items: center; gap: 10px;
+      width: 100%; padding: 14px 18px; border-radius: 12px;
+      color: #001b0b; background: linear-gradient(115deg, #74ffad, #00ef70 55%, #00c95d);
+      text-decoration: none; font-weight: 900;
+      box-shadow: 0 0 18px rgba(0,255,120,.22), inset 0 1px rgba(255,255,255,.35);
+      transition: transform .18s, filter .18s, box-shadow .18s;
+    }
+    .button:hover {
+      transform: translateY(-2px); filter: brightness(1.09);
+      box-shadow: 0 0 27px rgba(0,255,120,.35), inset 0 1px rgba(255,255,255,.4);
+    }
+    .portable .button {
+      color: var(--green-bright); background: linear-gradient(145deg, #102b1b, #0a1c11);
+      border: 1px solid rgba(0,255,120,.34); box-shadow: 0 0 18px rgba(0,255,120,.09);
+    }
+    .note {
+      margin: 24px auto 0; max-width: 700px; padding: 14px 16px;
+      border: 1px solid rgba(39,255,129,.13); border-radius: 13px;
+      color: #91aa99; font-size: 12px; line-height: 1.65; background: rgba(8,22,14,.72);
+    }
+    footer { margin-top: 43px; text-align: center; color: #617b69; font-size: 12px; }
+    @media (max-width: 650px) {
+      header { margin-bottom: 40px; }
+      .cards { grid-template-columns: 1fr; }
+      .card p { min-height: 0; }
+      h1 { letter-spacing: -2px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <div class="logo" aria-hidden="true">Y</div>
+      <div class="brand">YT <span>Downloader</span></div>
+    </header>
+
+    <section class="hero">
+      <div class="eyebrow">Simple. Fast. Ready when you are.</div>
+      <h1>YT <span>Downloader</span></h1>
+      <p class="intro">
+        Your media downloader, with two easy ways to get started.
+        Pick the installer for a guided setup, or choose portable to run
+        it without a traditional installation.
+      </p>
+    </section>
+
+    <section class="cards" aria-label="Download options">
+      <article class="card">
+        <div class="icon" aria-hidden="true">⬇</div>
+        <h2>Installer</h2>
+        <p>Get the standard setup experience and install YT Downloader on your device.</p>
+        <a class="button"
+           href="https://1drv.ms/u/c/b6184c23a3735b13/IQDsmpZgRD9YRYpSWcUMrXxTAZHnY6pZMuPLAfRm148E3Jg?e=0YfawR"
+           target="_blank" rel="noopener noreferrer">
+          Download installer <span aria-hidden="true">↗</span>
+        </a>
+      </article>
+
+      <article class="card portable">
+        <div class="icon" aria-hidden="true">▣</div>
+        <h2>Portable</h2>
+        <p>Use the portable edition when you want to run the app without a standard installation.</p>
+        <a class="button"
+           href="https://1drv.ms/u/c/b6184c23a3735b13/IQAIzIkzU1dzQLQMa2cfvOH_AYVslXZCvpb9Wph76KnW-Qc?e=fh6YdX"
+           target="_blank" rel="noopener noreferrer">
+          Download portable <span aria-hidden="true">↗</span>
+        </a>
+      </article>
+    </section>
+
+    <div class="note">
+      Downloads are hosted on OneDrive and open in a new tab. Only download files
+      from sources you trust, and scan downloaded files before opening them.
+      Download only media you own or have permission to save.
+    </div>
+
+    <footer>© <span id="year"></span> YT Downloader</footer>
+  </main>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
