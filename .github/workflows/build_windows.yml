@@ -1,4 +1,4 @@
-name: Build Windows EXE and Installer
+name: Build Windows EXE
 
 on:
   push:
@@ -25,17 +25,6 @@ jobs:
 
       - name: Build Windows Release (.exe)
         run: flutter build windows --release
-
-      - name: Build Windows Installer (setup.exe)
-        run: |
-          choco install innosetup -y
-          iscc installer.iss
-
-      - name: Upload Installer (setup.exe)
-        uses: actions/upload-artifact@v4
-        with:
-          name: yt-downloader-installer
-          path: Output/yt_downloader_setup.exe
 
       - name: Upload Standalone Portable Folder (.exe + DLLs)
         uses: actions/upload-artifact@v4
